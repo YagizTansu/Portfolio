@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/portfolio-details', function () {
     return view('portfolio-details');
 });
+
+Route::get('/about', function () {
+    return view('deneme');
+});
+
+Route::get('/portfolio-details', function () {
+    return view('portfolio-details');
+});

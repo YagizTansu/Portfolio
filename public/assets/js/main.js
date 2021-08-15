@@ -211,15 +211,40 @@
 
   });
 
+  window.addEventListener('load', () => {
+    let musicContainer = select('.music-container');
+    if (musicContainer) {
+      let musicIsotope = new Isotope(musicContainer, {
+        itemSelector: '.music-item',
+        layoutMode: 'fitRows'
+      });
+
+      let musicFilters = select('#music-flters li', true);
+
+      on('click', '#music-flters li', function(e) {
+        e.preventDefault();
+        musicFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        musicIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+      }, true);
+    }
+
+  });
+
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
   });
 
   /**
-   * Initiate portfolio details lightbox 
+   * Initiate portfolio details lightbox
    */
   const portfolioDetailsLightbox = GLightbox({
     selector: '.portfolio-details-lightbox',
